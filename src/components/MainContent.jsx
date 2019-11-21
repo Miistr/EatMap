@@ -13,7 +13,6 @@ class MainContent extends React.Component {
             { value: 'Pancakes', label: 'Pancakes' },
             { value: 'Sushi', label: 'Sushi' }
         ]
-        console.log(this.props)
         return (
             <div className="main">
                 <div className="main-text">
