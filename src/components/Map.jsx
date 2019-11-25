@@ -1,8 +1,7 @@
-import React, { Component, useState } from 'react';
+import React from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
+import './Modal.css';
+
 
 export class MapContainer extends React.Component {
     constructor(props) {
@@ -65,9 +64,13 @@ export class MapContainer extends React.Component {
             { latitude: 52.065230, longitude: 23.724953 },
             { latitude: 52.080856, longitude: 23.745502 },
             { latitude: 52.099563, longitude: 23.759038 },
-            { latitude: 52.085008, longitude: 23.693944 }]
+            { latitude: 52.085008, longitude: 23.693944 }],
+            show: false
+
         }
+
     }
+
 
     displayMarkers = (type) => {
         return this.state[type].map((store, index) => {
@@ -75,15 +78,19 @@ export class MapContainer extends React.Component {
                 lat: store.latitude,
                 lng: store.longitude
             }}
-                onClick={() => this.handleOpen()} />
+                onClick={this.showModal}
+            />
         })
     }
-    handleOpen = () => {
-        this.setOpen(true);
+
+    onClose = e => {
+        this.state.onClose && this.state.onClose(e);
     };
 
-    handleClose = () => {
-        this.setOpen(false);
+    showModal = e => {
+        this.setState({
+            show: !this.state.show
+        });
     };
 
     render() {
@@ -97,26 +104,12 @@ export class MapContainer extends React.Component {
                     {this.displayMarkers(this.props.type)}
                 </Map>
 
-                <Modal
-                    aria-labelledby="transition-modal-title"
-                    aria-describedby="transition-modal-description"
-                    className="modal"
-                    open={this.open}
-                    onClose={this.handleClose}
-                    closeAfterTransition
-                    BackdropComponent={Backdrop}
-                    BackdropProps={{
-                        timeout: 500,
-                    }}
-                >
-                    <Fade in={this.open}>
-                        <div className="paper">
-                            <h2 id="transition-modal-title">Transition modal</h2>
-                            <p id="transition-modal-description">react-transition-group animates me.</p>
-                        </div>
-                    </Fade>
-                </Modal >
+                <div className={!this.state.show ? "wrapper" : "wrapper open"}>
+                    <div className="mask" onClick={this.showModal} />
+                    <div className="container">est</div>
+                </div>
             </div>
+
         );
     }
 }

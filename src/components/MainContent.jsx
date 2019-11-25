@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import $ from 'jquery';
+import React from 'react';
 import Select from 'react-select';
 
 class MainContent extends React.Component {
@@ -22,16 +21,12 @@ class MainContent extends React.Component {
                     nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
                     anim id est laborum.
         </div>
-                <div className="container">
-                    <span className="choose">Choose Eat</span>
 
-                    <div className="dropdown">
-                        <Select options={options}
-                            onChange={this.props.onChange} />
-                    </div>
-                </div>
+                <span className="choose">Choose Eat</span>
 
-            </div>
+                <Select options={options}
+                    onChange={this.props.onChange} className="dropdown" />
+            </div   >
 
         );
 

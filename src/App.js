@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import MainContent from './components/MainContent';
 import './components/selectbox.css';
+import './components/search-box.css';
 import MapContainer from './components/Map'
 
 
